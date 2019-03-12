@@ -1,0 +1,138 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://singletons/interface/rotate.png" type="Texture" id=1]
+[ext_resource path="res://singletons/interface/fire.png" type="Texture" id=2]
+[ext_resource path="res://singletons/interface/pedal.png" type="Texture" id=3]
+
+
+[sub_resource type="CircleShape2D" id=1]
+
+radius = 60.0
+
+[sub_resource type="CircleShape2D" id=2]
+
+radius = 60.0
+
+[sub_resource type="CircleShape2D" id=3]
+
+radius = 100.0
+
+[node name="Interface" type="CanvasLayer"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -240.0
+margin_right = -40.0
+margin_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+custom_constants/separation = 20
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+margin_right = 340.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 120, 120 )
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -60.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 120, 120 )
+
+[node name="RotateRight" type="TouchScreenButton" parent="VBoxContainer/Control/Control"]
+normal = ExtResource( 1 )
+shape = SubResource( 1 )
+action = "rotate_right"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 140.0
+margin_right = 340.0
+margin_bottom = 340.0
+mouse_filter = 2
+custom_constants/separation = 20
+
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_right = 120.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 120, 120 )
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/Control2"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -60.0
+margin_top = -120.0
+margin_right = 60.0
+rect_min_size = Vector2( 120, 120 )
+
+[node name="Fire" type="TouchScreenButton" parent="VBoxContainer/HBoxContainer/Control2/Control"]
+normal = ExtResource( 2 )
+shape = SubResource( 2 )
+action = "fire"
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 140.0
+margin_right = 340.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+
+[node name="MoveRight" type="TouchScreenButton" parent="VBoxContainer/HBoxContainer/Control"]
+normal = ExtResource( 3 )
+shape = SubResource( 3 )
+action = "move_right"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = -336.0
+margin_right = 200.0
+margin_bottom = -40.0
+grow_vertical = 0
+mouse_filter = 2
+custom_constants/separation = 20
+
+[node name="Control" type="Control" parent="VBoxContainer2"]
+margin_right = 200.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 120, 120 )
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="VBoxContainer2/Control"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -60.0
+margin_right = 120.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 120, 120 )
+
+[node name="RotateLeft" type="TouchScreenButton" parent="VBoxContainer2/Control/Control"]
+position = Vector2( 120, 0 )
+rotation = -3.14159
+scale = Vector2( 1, -1 )
+normal = ExtResource( 1 )
+shape = SubResource( 1 )
+action = "rotate_left"
+
+[node name="Control2" type="Control" parent="VBoxContainer2"]
+margin_top = 140.0
+margin_right = 200.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 200, 200 )
+
+[node name="MoveRight" type="TouchScreenButton" parent="VBoxContainer2/Control2"]
+normal = ExtResource( 3 )
+shape = SubResource( 3 )
+action = "move_left"
+

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://landscape/green_hills/windmill.png" type="Texture" id=1]
+
+[node name="Windmill" type="CollisionPolygon2D"]
+polygon = PoolVector2Array( -141, 489, -78, -284, -111, -284, -117, -275, -147, -275, 0, -490, 147, -275, 117, -275, 111, -284, 78, -284, 141, 490 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+

@@ -1,0 +1,16 @@
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+reloadable=true
+
+[entry]
+
+Android.arm64-v8a="res://lib/libbattletanks.android.arm64-v8a.so"
+Windows.64="res://lib/battletanks.windows.64.dll"
+
+[dependencies]
+
+Android.arm64-v8a=[  ]
+Windows.64=[  ]

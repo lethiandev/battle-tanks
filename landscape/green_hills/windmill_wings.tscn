@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://landscape/green_hills/windmill_wings.png" type="Texture" id=1]
+
+[node name="WindmillWings" type="CollisionPolygon2D"]
+polygon = PoolVector2Array( -106, 32, -609, 76, -609, -74, -106, -31, -106, -9, -30, -9, -26, -18, -18, -26, -9, -30, -9, -106, -31, -106, -76, -610, 74, -610, 31, -106, 9, -106, 9, -31, 19, -25, 26, -18, 30, -9, 106, -9, 106, -31, 609, -76, 609, 75, 106, 31, 106, 9, 30, 9, 25, 19, 18, 26, 9, 30, 9, 106, 31, 106, 76, 610, -74, 610, -31, 106, -9, 106, -9, 30, -19, 25, -25, 19, -30, 9, -106, 9 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+

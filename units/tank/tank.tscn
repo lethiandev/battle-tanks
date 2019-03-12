@@ -1,0 +1,147 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://units/tank/tank.gd" type="Script" id=1]
+[ext_resource path="res://units/tank/states.gd" type="Script" id=2]
+[ext_resource path="res://units/tank/body.png" type="Texture" id=3]
+[ext_resource path="res://units/tank/barrel.png" type="Texture" id=4]
+[ext_resource path="res://units/tank/trajectory.tres" type="Material" id=5]
+[ext_resource path="res://units/tank/trajectory.gd" type="Script" id=6]
+[ext_resource path="res://units/tank/trajectory.png" type="Texture" id=7]
+[ext_resource path="res://units/tank/track.png" type="Texture" id=8]
+[ext_resource path="res://units/tank/wheel.gd" type="Script" id=9]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.8
+
+[sub_resource type="PhysicsMaterial" id=3]
+rough = true
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 28.0
+
+[sub_resource type="PhysicsMaterial" id=4]
+rough = true
+
+[sub_resource type="PhysicsMaterial" id=5]
+rough = true
+
+[sub_resource type="PhysicsMaterial" id=6]
+rough = true
+
+[sub_resource type="PhysicsMaterial" id=7]
+rough = true
+
+[node name="Tank" type="RigidBody2D"]
+mass = 25.0
+physics_material_override = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -40 )
+polygon = PoolVector2Array( -59, -3, -46, -3, -46, -9, -53, -16, -53, -47, -44, -57, 48, -57, 66, -21, 53, -8, 53, -2, 71, -2, 80, 9, 86, 56, 84, 65, 76, 72, -77, 72, -84, 65, -86, 57, -78, 12 )
+
+[node name="Body" type="Sprite" parent="."]
+position = Vector2( 0, -40 )
+texture = ExtResource( 3 )
+
+[node name="Barrel" type="Sprite" parent="Body"]
+show_behind_parent = true
+position = Vector2( 0, -28 )
+texture = ExtResource( 4 )
+offset = Vector2( 58, 0 )
+
+[node name="Position2D" type="Position2D" parent="Body/Barrel"]
+show_behind_parent = true
+material = ExtResource( 5 )
+position = Vector2( 108, 0 )
+script = ExtResource( 6 )
+amount = 10
+size = 12.0
+texture = ExtResource( 7 )
+
+[node name="Track" type="Sprite" parent="Body"]
+position = Vector2( 0, 57 )
+texture = ExtResource( 8 )
+
+[node name="Wheel" type="RigidBody2D" parent="Body/Track"]
+position = Vector2( -71, 0 )
+mode = 2
+mass = 5.0
+physics_material_override = SubResource( 3 )
+script = ExtResource( 9 )
+root_node = NodePath("../../..")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Body/Track/Wheel"]
+node_a = NodePath("..")
+node_b = NodePath("../../../..")
+softness = 0.18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Track/Wheel"]
+shape = SubResource( 2 )
+
+[node name="Wheel2" type="RigidBody2D" parent="Body/Track"]
+position = Vector2( -36, 0 )
+mode = 2
+mass = 5.0
+physics_material_override = SubResource( 4 )
+script = ExtResource( 9 )
+root_node = NodePath("../../..")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Body/Track/Wheel2"]
+node_a = NodePath("..")
+node_b = NodePath("../../../..")
+softness = 0.18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Track/Wheel2"]
+shape = SubResource( 2 )
+
+[node name="Wheel3" type="RigidBody2D" parent="Body/Track"]
+mode = 2
+mass = 5.0
+physics_material_override = SubResource( 5 )
+script = ExtResource( 9 )
+root_node = NodePath("../../..")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Body/Track/Wheel3"]
+node_a = NodePath("..")
+node_b = NodePath("../../../..")
+softness = 0.18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Track/Wheel3"]
+shape = SubResource( 2 )
+
+[node name="Wheel4" type="RigidBody2D" parent="Body/Track"]
+position = Vector2( 36, 0 )
+mode = 2
+mass = 5.0
+physics_material_override = SubResource( 6 )
+script = ExtResource( 9 )
+root_node = NodePath("../../..")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Body/Track/Wheel4"]
+node_a = NodePath("..")
+node_b = NodePath("../../../..")
+softness = 0.18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Track/Wheel4"]
+shape = SubResource( 2 )
+
+[node name="Wheel5" type="RigidBody2D" parent="Body/Track"]
+position = Vector2( 71, 0 )
+mode = 2
+mass = 5.0
+physics_material_override = SubResource( 7 )
+script = ExtResource( 9 )
+root_node = NodePath("../../..")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Body/Track/Wheel5"]
+node_a = NodePath("..")
+node_b = NodePath("../../../..")
+softness = 0.15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Track/Wheel5"]
+shape = SubResource( 2 )
+

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://landscape/green_hills/well.png" type="Texture" id=1]
+
+[node name="Well" type="CollisionPolygon2D"]
+polygon = PoolVector2Array( -74, 146, -74, 77, -66.0878, 77, -66, -10, -75, -10, -75, -37, -62, -37, -62, -95, -59, -108, -53, -121, -45, -131, -36, -138, -22, -144, -8, -146, 7, -146, 20, -142, 33, -136, 45, -126, 53, -115, 57, -105, 59, -94, 59, -37, 75, -37, 75, -10, 66, -10, 66, 77, 74, 77, 74, 146 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+

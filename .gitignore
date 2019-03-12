@@ -1,0 +1,9 @@
+.vscode/
+.import/
+
+lib/*.ilk
+lib/*.pdb
+
+native/build/*
+
+!.gitkeep

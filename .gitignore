@@ -1,5 +1,6 @@
 .vscode/
 .import/
+.export/
 
 lib/*.ilk
 lib/*.pdb

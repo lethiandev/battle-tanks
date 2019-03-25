@@ -19,6 +19,9 @@ endif()
 if(CMAKE_SYSTEM_NAME STREQUAL Android)
 	set(GODOT_CPP_LIB_SUFFIX_DEBUG "android.${ANDROID_ABI}")
 	set(GODOT_CPP_LIB_SUFFIX_RELEASE "android.opt.${ANDROID_ABI}")
+elseif(CMAKE_SYSTEM_NAME STREQUAL Emscripten)
+	set(GODOT_CPP_LIB_SUFFIX_DEBUG "javascript")
+	set(GODOT_CPP_LIB_SUFFIX_RELEASE "javascript.opt")
 else()
 	if(WIN32)
 		set(GODOT_CPP_LIB_SUFFIX_DEBUG "windows")
@@ -39,27 +42,20 @@ endif()
 
 set(GODOT_CPP_LIBRARY_NAME "godot-cpp")
 
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
+set(GODOT_CPP_RELEASE_BUILD_TYPES "Release;MinSizeRel")
+if(CMAKE_BUILD_TYPE IN_LIST GODOT_CPP_RELEASE_BUILD_TYPES)
 	set(GODOT_CPP_LIBRARY_NAME "${GODOT_CPP_LIBRARY_NAME}.${GODOT_CPP_LIB_SUFFIX_RELEASE}")
 else()
 	set(GODOT_CPP_LIBRARY_NAME "${GODOT_CPP_LIBRARY_NAME}.${GODOT_CPP_LIB_SUFFIX_DEBUG}")
 endif()
 
-# Fix Android's CMake Toolchain to allow finding host libraries
-if(CMAKE_SYSTEM_NAME STREQUAL Android)
-	set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY BOTH)
-	set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE BOTH)
-endif()
-
-message(STATUS "CMAKE_SYSTEM_INCLUDE_PATH=${CMAKE_SYSTEM_INCLUDE_PATH}")
-
 # Find include directories
-find_path(GODOT_CPP_INCLUDE_DIR_HEADERS gdnative_api_struct.gen.h HINTS "${GODOT_CPP_PATH}/godot-cpp" PATH_SUFFIXES godot_headers)
-find_path(GODOT_CPP_INCLUDE_DIR_CORE core/Godot.hpp HINTS "${GODOT_CPP_PATH}/godot-cpp" PATH_SUFFIXES include)
-find_path(GODOT_CPP_INCLUDE_DIR_GEN gen/Object.hpp HINTS "${GODOT_CPP_PATH}/godot-cpp" PATH_SUFFIXES include)
+find_path(GODOT_CPP_INCLUDE_DIR_HEADERS gdnative_api_struct.gen.h HINTS "${GODOT_CPP_PATH}/godot-cpp/godot_headers" PATH_SUFFIXES godot_headers NO_CMAKE_FIND_ROOT_PATH)
+find_path(GODOT_CPP_INCLUDE_DIR_CORE core/Godot.hpp HINTS "${GODOT_CPP_PATH}/godot-cpp" PATH_SUFFIXES include NO_CMAKE_FIND_ROOT_PATH)
+find_path(GODOT_CPP_INCLUDE_DIR_GEN gen/Object.hpp HINTS "${GODOT_CPP_PATH}/godot-cpp" PATH_SUFFIXES include NO_CMAKE_FIND_ROOT_PATH)
 
 # Find the library
-find_library(GODOT_CPP_LIBRARY "${GODOT_CPP_LIBRARY_NAME}" HINTS "${GODOT_CPP_PATH}" PATH_SUFFIXES lib)
+find_library(GODOT_CPP_LIBRARY "${GODOT_CPP_LIBRARY_NAME}" HINTS "${GODOT_CPP_PATH}" PATH_SUFFIXES lib NO_CMAKE_FIND_ROOT_PATH)
 
 # Handle find_package's QUIET, REQUIRED etc. arguments
 include(FindPackageHandleStandardArgs)

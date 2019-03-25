@@ -10,6 +10,12 @@ if(CMAKE_SYSTEM_NAME STREQUAL Android)
 	set(ANDROID_STL c++_shared)
 endif()
 
+# Settings for Emscripten build
+# Use $EMSCRIPTEN/cmake/Modules/Platform/Emscripten.cmake toolchain
+if(CMAKE_SYSTEM_NAME STREQUAL Emscripten)
+	set(CMAKE_TOOLCHAIN_FILE "$ENV{EMSCRIPTEN}/cmake/Modules/Platform/Emscripten.cmake" CACHE FILEPATH "Emscripten's CMake toolchain file")
+endif()
+
 # Setup additional CMake modules path
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 

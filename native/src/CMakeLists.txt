@@ -15,9 +15,22 @@ target_include_directories(BattleTanksLibrary PUBLIC "${CMAKE_CURRENT_SOURCE_DIR
 target_link_libraries(BattleTanksLibrary PUBLIC GodotCpp::GodotCpp ClipperLib PolyPartition)
 target_compile_features(BattleTanksLibrary PUBLIC cxx_std_14)
 
+# Configure Emscripten build
+if(CMAKE_SYSTEM_NAME STREQUAL Emscripten)
+	set_property(TARGET BattleTanksLibrary PROPERTY SUFFIX ".wasm")
+
+	target_link_options(BattleTanksLibrary PRIVATE
+		"SHELL:-s SIDE_MODULE=2"
+		"SHELL:-s BINARYEN_TRAP_MODE='clamp'"
+		"SHELL:-s EXPORTED_FUNCTIONS=['_godot_gdnative_init','_godot_gdnative_terminate','_godot_nativescript_init']"
+	)
+endif()
+
 # Setup output name suffix for the Battle Tanks library target
 if(CMAKE_SYSTEM_NAME STREQUAL Android)
 	set(BATTLETANKS_SUFFIX "android.${CMAKE_ANDROID_ARCH_ABI}")
+elseif(CMAKE_SYSTEM_NAME STREQUAL Emscripten)
+	set(BATTLETANKS_SUFFIX "javascript")
 else()
 	if(WIN32)
 		set(BATTLETANKS_SUFFIX "windows")

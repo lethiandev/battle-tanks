@@ -50,7 +50,7 @@ else()
 endif()
 
 # Find include directories
-find_path(GODOT_CPP_INCLUDE_DIR_HEADERS gdnative_api_struct.gen.h HINTS "${GODOT_CPP_PATH}/godot-cpp/godot_headers" PATH_SUFFIXES godot_headers NO_CMAKE_FIND_ROOT_PATH)
+find_path(GODOT_CPP_INCLUDE_DIR_HEADERS gdnative_api_struct.gen.h HINTS "${GODOT_CPP_PATH}/godot-cpp" PATH_SUFFIXES godot_headers NO_CMAKE_FIND_ROOT_PATH)
 find_path(GODOT_CPP_INCLUDE_DIR_CORE core/Godot.hpp HINTS "${GODOT_CPP_PATH}/godot-cpp" PATH_SUFFIXES include NO_CMAKE_FIND_ROOT_PATH)
 find_path(GODOT_CPP_INCLUDE_DIR_GEN gen/Object.hpp HINTS "${GODOT_CPP_PATH}/godot-cpp" PATH_SUFFIXES include NO_CMAKE_FIND_ROOT_PATH)
 

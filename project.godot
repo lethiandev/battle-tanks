@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Battle Tanks"
-run/main_scene="res://levels/sandbox/sandbox.tscn"
+run/main_scene="res://stages/sandbox/sandbox.tscn"
 config/icon="res://icon.png"
 
 [autoload]

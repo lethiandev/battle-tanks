@@ -1,10 +1,13 @@
-.vscode/
-.import/
-.export/
+# Env setup
+.vscode
 
+# Godot Engine
+.import
+.export
+
+# Build
+native/build/*
 lib/*.ilk
 lib/*.pdb
-
-native/build/*
 
 !.gitkeep

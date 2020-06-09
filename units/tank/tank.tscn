@@ -13,10 +13,10 @@
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.8
 
-[sub_resource type="PhysicsMaterial" id=3]
+[sub_resource type="PhysicsMaterial" id=2]
 rough = true
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 28.0
 
 [sub_resource type="PhysicsMaterial" id=4]
@@ -58,8 +58,6 @@ show_behind_parent = true
 material = ExtResource( 5 )
 position = Vector2( 108, 0 )
 script = ExtResource( 6 )
-amount = 10
-size = 12.0
 texture = ExtResource( 7 )
 
 [node name="Track" type="Sprite" parent="Body"]
@@ -70,7 +68,7 @@ texture = ExtResource( 8 )
 position = Vector2( -71, 0 )
 mode = 2
 mass = 5.0
-physics_material_override = SubResource( 3 )
+physics_material_override = SubResource( 2 )
 script = ExtResource( 9 )
 root_node = NodePath("../../..")
 
@@ -80,7 +78,7 @@ node_b = NodePath("../../../..")
 softness = 0.18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Track/Wheel"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Wheel2" type="RigidBody2D" parent="Body/Track"]
 position = Vector2( -36, 0 )
@@ -96,7 +94,7 @@ node_b = NodePath("../../../..")
 softness = 0.18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Track/Wheel2"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Wheel3" type="RigidBody2D" parent="Body/Track"]
 mode = 2
@@ -111,7 +109,7 @@ node_b = NodePath("../../../..")
 softness = 0.18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Track/Wheel3"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Wheel4" type="RigidBody2D" parent="Body/Track"]
 position = Vector2( 36, 0 )
@@ -127,7 +125,7 @@ node_b = NodePath("../../../..")
 softness = 0.18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Track/Wheel4"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Wheel5" type="RigidBody2D" parent="Body/Track"]
 position = Vector2( 71, 0 )
@@ -143,5 +141,4 @@ node_b = NodePath("../../../..")
 softness = 0.15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Track/Wheel5"]
-shape = SubResource( 2 )
-
+shape = SubResource( 3 )

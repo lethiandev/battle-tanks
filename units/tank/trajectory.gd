@@ -19,7 +19,7 @@ func _enter_tree():
 
 func _draw():
 	var texrid = texture.get_rid() if texture else RID()
-	VisualServer.canvas_item_add_mesh(get_canvas_item(), mesh, texrid)
+	VisualServer.canvas_item_add_mesh(get_canvas_item(), mesh, Transform2D(), Color.white, texrid)
 
 func set_amount(value):
 	amount = value
